@@ -3,6 +3,7 @@
 # Linux/arm64 4.9.196 Kernel Configuration
 #
 # temp config
+CONFIG_SCHED_BORE=y
 CONFIG_ZRAM_SIZE_OVERRIDE=2
 CONFIG_ARM64=y
 CONFIG_64BIT=y
