@@ -1,0 +1,60 @@
+#!/bin/sh
+#
+# This script adds local version information without SCM details.
+#
+# If something goes wrong, send a mail to the kernel build mailing list
+# (see MAINTAINERS) and CC Nico Schottelius
+# <nico-linuxsetlocalversion -at- schottelius.org>.
+#
+
+usage() {
+    echo "Usage: $0 [--save-scmversion] [srctree]" >&2
+    exit 1
+}
+
+scm_only=false
+srctree=.
+
+if test "$1" = "--save-scmversion"; then
+    scm_only=true
+    shift
+fi
+
+if test $# -gt 0; then
+    srctree=$1
+    shift
+fi
+
+if test $# -gt 0 -o ! -d "$srctree"; then
+    usage
+fi
+
+scm_version() {
+    # You can customize or add logic here if needed
+    echo ""
+}
+
+if $scm_only; then
+    if test ! -e .scmversion; then
+        res=$(scm_version)
+        echo "$res" >.scmversion
+    fi
+    exit
+fi
+
+if test -e include/config/auto.conf; then
+    . include/config/auto.conf
+else
+    echo "Error: kernelrelease not valid - run 'make prepare' to update it" >&2
+    exit 1
+fi
+
+# CONFIG_LOCALVERSION and LOCALVERSION (if set)
+res="${CONFIG_LOCALVERSION}${LOCALVERSION}"
+
+# scm version string (if needed)
+if test "$CONFIG_LOCALVERSION_AUTO" = "y"; then
+    res="$res$(scm_version)"
+fi
+
+echo "$res"
