@@ -11,7 +11,7 @@ defaults:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: fedora-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,8 +23,8 @@ jobs:
 
       - name: setup package
         run: |
-          sudo apt-get update -y && sudo apt-get upgrade -y
-          sudo apt-get install -y dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf llvm lld lldb clang gcc binutils bison perl gperf gawk flex bc python3 zstd openssl unzip cpio bc bison build-essential ccache liblz4-tool libsdl1.2-dev libstdc++6 libxml2 libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zlib1g-dev libncurses5-dev bzip2 git gcc g++ libssl-dev gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi dos2unix kmod python2 aria2 glibc-source
+          sudo dnf update -y && sudo dnf upgrade -y
+          sudo dnf install -y dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf llvm lld lldb clang gcc binutils bison perl gperf gawk flex bc python3 zstd openssl unzip cpio bc bison @development-tools ccache liblz4-tool SDL-devel libstdc++ zlib-devel libxml2 libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zlib-devel ncurses-devel bzip2 git gcc gcc-c++ openssl-devel dos2unix kmod python2 aria2 glibc-source
 
       - name: Clone environments
         run: |
@@ -32,7 +32,6 @@ jobs:
           tar -xf tc && mv -f ./gcc-arm64 ./gcc
           rm -f tc
           git clone --depth=1 https://github.com/bintang774/anykernel.git anykernel
-
 
       - name: Cleanup
         run: |
