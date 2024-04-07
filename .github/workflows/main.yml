@@ -44,4 +44,4 @@ jobs:
       - name: Build Kernel
         run: |
           sleep 10
-          $(pwd)/build
+          $(pwd)/build.sh
