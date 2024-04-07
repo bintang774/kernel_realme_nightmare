@@ -14,7 +14,7 @@ export DEVICE="Realme C11, C12, C15 (${CODENAME})"
 export BUILDER="eraselk"
 export BUILD_HOST="github-actions"
 export TIMESTAMP=$(date +"%Y%m%d")-$(date +"%H%M%S")
-export KBUILD_COMPILER_STRING="$(./gcc/bin/aarch64-none-elf-gcc -v 2>&1 | grep 'gcc version')"
+export KBUILD_COMPILER_STRING="$(./gcc/bin/aarch64-elf-gcc -v 2>&1 | grep 'gcc version')"
 export FW="RUI1"
 export zipn="kernel-${CODENAME}-${FW}-${TIMESTAMP}"
 
@@ -109,7 +109,7 @@ compile_kernel() {
         OBJDUMP=llvm-objdump \
         OBJCOPY=llvm-objcopy \
         STRIP=llvm-strip \
-        CROSS_COMPILE=aarch64-none-elf- \
+        CROSS_COMPILE=aarch64-elf- \
         CONFIG_NO_ERROR_ON_MISMATCH=y \
         CONFIG_DEBUG_SECTION_MISMATCH=y \
         V=0 2>&1 | tee out/build.log
