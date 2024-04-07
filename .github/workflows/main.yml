@@ -22,7 +22,7 @@ jobs:
       - name: setup package
         run: |
           sudo dnf update -y && sudo dnf upgrade -y
-          sudo dnf install -y dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf llvm lld lldb clang gcc binutils bison perl gperf gawk flex bc python3 zstd openssl unzip cpio bc bison @development-tools ccache liblz4-tool SDL-devel libstdc++ zlib-devel libxml2 libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zlib-devel ncurses-devel bzip2 git gcc gcc-c++ openssl-devel dos2unix kmod python2 aria2 glibc-source
+          sudo dnf install -y dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf llvm lld lldb clang gcc binutils bison perl gperf gawk flex bc python3 zstd openssl unzip cpio bc bison @development-tools ccache SDL-devel libstdc++ zlib-devel lzop pngcrush schedtool squashfs-tools xsltproc zlib-devel ncurses-devel bzip2 git gcc gcc-c++ openssl-devel dos2unix kmod python2 aria2
 
       - name: Clone environments
         run: |
