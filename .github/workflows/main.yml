@@ -26,7 +26,7 @@ jobs:
 
       - name: Clone environments
         run: |
-          wget https://github.com/bintang774/eraselk-gcc/releases/download/07042024/eraselk-gcc-arm64-07042024.xz -O tc
+          wget https://github.com/bintang774/eraselk-gcc/releases/download/07042024-9.5.0/eraselk-gcc-arm64-07042024.xz -O tc
           tar -xf tc && mv -f ./gcc-arm64 ./gcc
           rm -f tc
           git clone --depth=1 https://github.com/bintang774/anykernel.git anykernel
@@ -41,4 +41,4 @@ jobs:
       - name: Build Kernel
         run: |
           sleep 10
-          $(pwd)/build.sh
+          bash build.sh
