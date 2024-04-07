@@ -18,12 +18,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Set Swap Space
-        uses: pierotofy/set-swap-space@master
-        with:
-          swap-size-gb: 5
-
+        
       - name: setup package
         run: |
           sudo dnf update -y && sudo dnf upgrade -y
