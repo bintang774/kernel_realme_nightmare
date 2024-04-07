@@ -103,12 +103,6 @@ compile_kernel() {
 
     make -j"$PROCS" O=out \
         ARCH=${ARCH} \
-        AR=llvm-ar \
-        AS=llvm-as \
-        NM=llvm-nm \
-        OBJDUMP=llvm-objdump \
-        OBJCOPY=llvm-objcopy \
-        STRIP=llvm-strip \
         CROSS_COMPILE=aarch64-elf- \
         CONFIG_NO_ERROR_ON_MISMATCH=y \
         CONFIG_DEBUG_SECTION_MISMATCH=y \
