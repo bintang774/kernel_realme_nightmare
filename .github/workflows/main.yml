@@ -12,8 +12,6 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: fedora:latest    
            
     steps:
       - name: Checkout
@@ -21,8 +19,8 @@ jobs:
         
       - name: setup package
         run: |
-          sudo dnf update -y && sudo dnf upgrade -y
-          sudo dnf install -y dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf llvm lld lldb clang gcc binutils bison perl gperf gawk flex bc python3 zstd openssl unzip cpio bc bison @development-tools ccache SDL-devel libstdc++ zlib-devel lzop pngcrush schedtool squashfs-tools xsltproc zlib-devel ncurses-devel bzip2 git gcc gcc-c++ openssl-devel dos2unix kmod python2 aria2
+          sudo apt-get update -y && sudo apt-get upgrade -y
+          sudo apt-get install -y dialog bash sed wget git curl zip tar jq expect make cmake automake autoconf llvm lld lldb clang gcc binutils bison perl gperf gawk flex bc python3 zstd openssl unzip cpio bc bison build-essential ccache liblz4-tool libsdl1.2-dev libstdc++6 libxml2 libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zlib1g-dev libncurses5-dev bzip2 git gcc g++ libssl-dev gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi dos2unix kmod python2 aria2 glibc-source
 
       - name: Clone environments
         run: |
