@@ -95,7 +95,7 @@ compile_kernel() {
 
     export KBUILD_BUILD_USER=${BUILDER}
     export KBUILD_BUILD_HOST=${BUILD_HOST}
-    export PATH="$(pwd)/gcc/bin:${PATH}"
+    export PATH="$(pwd)/toolchain/bin:${PATH}"
 
     make O=out ARCH=${ARCH} ${DEFCONFIG}
 
@@ -103,7 +103,15 @@ compile_kernel() {
 
     make -j"$PROCS" O=out \
         ARCH=${ARCH} \
-        CROSS_COMPILE=aarch64-elf- \
+        CC=clang \ 
+        AR=llvm-ar \
+        NM=llvm-nm \
+        AS=llvm-as \
+        OBJCOPY=llvm-objcopy \
+        OBJDUMP=llvm-objdump \
+        STRIP=llvm-strip \
+        CROSS_COMPILE=aarch64-linux-gnu- \
+        CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
         CONFIG_NO_ERROR_ON_MISMATCH=y \
         CONFIG_DEBUG_SECTION_MISMATCH=y \
         V=0 2>&1 | tee out/build.log
