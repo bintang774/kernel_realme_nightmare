@@ -14,7 +14,7 @@ export DEVICE="Realme C11, C12, C15 (${CODENAME})"
 export BUILDER="eraselk"
 export BUILD_HOST="github-actions"
 export TIMESTAMP=$(date +"%Y%m%d")-$(date +"%H%M%S")
-export KBUILD_COMPILER_STRING="$(./gcc/bin/aarch64-elf-gcc -v 2>&1 | grep 'gcc version')"
+export KBUILD_COMPILER_STRING="$(./toolchain/bin/clang -v 2>&1 | head -n 1)"
 export FW="RUI1"
 export zipn="kernel-${CODENAME}-${FW}-${TIMESTAMP}"
 
