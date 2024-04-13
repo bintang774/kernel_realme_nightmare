@@ -98,24 +98,23 @@ compile_kernel() {
     export PATH="$(pwd)/toolchain/bin:${PATH}"
 
     make O=out ARCH=${ARCH} ${DEFCONFIG}
-
     START=$(date +"%s")
-
+    
     make -j"$PROCS" O=out \
-        ARCH=${ARCH} \
-        CC=clang \ 
-        AR=llvm-ar \
-        NM=llvm-nm \
-        AS=llvm-as \
-        OBJCOPY=llvm-objcopy \
-        OBJDUMP=llvm-objdump \
-        STRIP=llvm-strip \
-        CROSS_COMPILE=aarch64-linux-gnu- \
-        CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-        CONFIG_NO_ERROR_ON_MISMATCH=y \
-        CONFIG_DEBUG_SECTION_MISMATCH=y \
-        V=0 2>&1 | tee out/build.log
-
+    ARCH=${ARCH} \
+    CC=clang \
+    AR=llvm-ar \
+    NM=llvm-nm \
+    AS=llvm-as \
+    OBJCOPY=llvm-objcopy \
+    OBJDUMP=llvm-objdump \
+    STRIP=llvm-strip \
+    CROSS_COMPILE=aarch64-linux-gnu- \
+    CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+    CONFIG_NO_ERROR_ON_MISMATCH=y \
+    CONFIG_DEBUG_SECTION_MISMATCH=y \
+    V=0 2>&1 | tee out/build.log
+    
     END=$(date +"%s")
     DIFF=$((END - START))
     export minutes=$((DIFF / 60))
