@@ -95,6 +95,7 @@ compile_kernel() {
 
     export KBUILD_BUILD_USER=${BUILDER}
     export KBUILD_BUILD_HOST=${BUILD_HOST}
+    export KBUILD_COMPILER_STRING="gacorprjkt"
     export PATH="$(pwd)/toolchain/bin:${PATH}"
 
     make O=out ARCH=${ARCH} ${DEFCONFIG}
